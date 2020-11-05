@@ -2,6 +2,6 @@ public class Hello
 {
  public static void main(String args[])
  {
-   System.out.println("github hook and Modularized deployment !!!!!!");
+   System.out.println("poll scm  and modularized deployment working!!!!!!");
  }
 }
