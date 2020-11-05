@@ -1,0 +1,9 @@
+- name: "Clean Environment"
+  become: true
+  hosts: webservers
+  tasks: 
+    - 
+      ignore_errors: true
+      name: "Cleaning Environment"
+      shell: "sudo rm /home/osboxes/Documents/Hello.java"
+      shell: "sudo rm /home/osboxes/Documents/Hello.class"

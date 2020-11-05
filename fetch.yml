@@ -1,0 +1,34 @@
+--- 
+- name: "Fetch requirements"
+  become: true
+  hosts: webservers
+  tasks:
+    - 
+      name: "Check if java is installed"
+      package_facts: 
+        manager: auto
+    - 
+      debug: 
+        msg: "Java-1.8.0 found"
+      name: "Java test result"
+      when: "'java-1.8.0-openjdk-devel' in ansible_facts.packages"
+    - 
+      debug: 
+        msg: "Java-1.8.0 not found"
+      name: "Java test result"
+      when: "'java-1.8.0-openjdk-devel' not in ansible_facts.packages"
+    - 
+      name: "Install Java-1.8.0 packages"
+      when: "'java-1.8.0-openjdk-devel' not in ansible_facts.packages"
+      yum: 
+        name: java-1.8.0-openjdk-devel
+        state: present
+        
+    -
+      name: example copying file with owner and permissions
+      copy:
+        src: Hello.java
+        dest: /home/osboxes/Documents
+        owner: osboxes
+        group: osboxes
+        mode: 0777
